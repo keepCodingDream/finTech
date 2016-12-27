@@ -87,3 +87,20 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+.gradle
+.idea
+build
+bin
+.classpath
+.settings
+.project
+target
+out
+.springBeans
+*.rdb
+!eclispe/.checkstyle
+.checkstyle
+webCrawler_scrapy/info.json
+/images
+
