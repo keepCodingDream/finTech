@@ -31,19 +31,14 @@ class Spdier_pictures(scrapy.spiders.Spider):
                 if imgURLs:
                     realUrl=imgURLs[0].replace("t_s208x130c5","t_s2560x1600c5") #这里替换一下，可以找到更大的图片
                     file_name=u"%s.jpg"%titles[0] #要保存文件的命名
-                    
-                    path=os.path.join("/Users/lurenjie/Music/code/Spider/PythonCrawler/images",file_name)#拼接这个图片的路径，我是放在F盘的pics文件夹下
-                    
+                    path=os.path.join("/Users/lurenjie/Music/code/Spider/finTech/images",file_name)
                     type = sys.getfilesystemencoding()
                     print file_name.encode(type)  
-                    
                     item=WebcrawlerScrapyItem()  #实例item（具体定义的item类）,将要保存的值放到事先声明的item属性中
                     item['name']=file_name 
                     item['url']=realUrl
                     print item["name"],item["url"]    
-                    
                     yield item  #返回item,这时会自定解析item
-                    
                     urllib.urlretrieve(realUrl,path)  #接收文件路径和需要保存的路径，会自动去文件路径下载并保存到我们指定的本地路径
             
             '''all_urls=se.xpath("//a/@href").extract()#提取界面所有的url
