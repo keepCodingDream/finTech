@@ -102,4 +102,4 @@ out
 !eclispe/.checkstyle
 .checkstyle
 webCrawler_scrapy/info.json
-/images
+/images/
