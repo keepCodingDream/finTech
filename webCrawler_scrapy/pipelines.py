@@ -79,4 +79,4 @@ class WebcrawlerScrapyPipeline(object):
         print failue
 
     def dealString(self, str):
-        return str.replace('\t', '').replace('\n', '').replace(' ', '').replace('\0', '')
+        return str.replace('\\t', '').replace('\\n', '').replace(' ', '').replace('\\0', '').replace('\\r', '')
