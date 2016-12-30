@@ -7,7 +7,7 @@ from scrapy.linkextractors import LinkExtractor
 
 class Forbes(CrawlSpider):
     name = "forbes"
-    allowed_domains = ["www.forbes.com"]
+    allowed_domains = ["forbes.com"]
     start_urls = (
         'www.forbes.com/most-popular/#4dbdd06828c7',
     )

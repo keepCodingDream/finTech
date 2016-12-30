@@ -63,9 +63,10 @@ DOWNLOAD_DELAY=2
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'webCrawler_scrapy.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'webCrawler_scrapy.middlewares.RandomUserAgent':420,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
@@ -79,8 +80,8 @@ DOWNLOAD_DELAY=2
 #    'webCrawler_scrapy.pipelines.SomePipeline': 300,
 #}
 ITEM_PIPELINES = {
+    'webCrawler_scrapy.pipelines.JsonWithEncodingPipeline': 1000,#保存到文件中
     'webCrawler_scrapy.pipelines.WebcrawlerScrapyPipeline': 1000,#保存到mysql数据库
-    'webCrawler_scrapy.pipelines.JsonWithEncodingPipeline': 0,#保存到文件中
 }
 
 USER_AGENTS = [
@@ -151,11 +152,11 @@ DOWNLOAD_TIMEOUT = 15
 #禁止重试
 RETRY_ENABLED = False
 #禁用cokies
-COOKIES_ENABLED = False
+COOKIES_ENABLED = True
 
 LOG_LEVEL = 'INFO'
 #全局并发
-CONCURRENT_REQUESTS = 100
+CONCURRENT_REQUESTS = 500
 
 #Mysql数据库的配置信息
 MYSQL_HOST = '127.0.0.1'

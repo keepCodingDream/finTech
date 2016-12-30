@@ -11,7 +11,8 @@ import scrapy
 
 class Article(scrapy.Item):
     '''定义需要格式化的内容（或是需要保存到数据库的字段）'''
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    name = scrapy.Field()   #修改你所需要的字段
+    domain = scrapy.Field()
+    title = scrapy.Field()
     url = scrapy.Field()
+    created = scrapy.Field()
+    content = scrapy.Field()

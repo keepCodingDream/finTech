@@ -6,12 +6,12 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import codecs
+import datetime
 import json
 
 import MySQLdb
 import MySQLdb.cursors
 from twisted.enterprise import adbapi
-from scrapy import log
 
 
 class JsonWithEncodingPipeline(object):
@@ -24,7 +24,7 @@ class JsonWithEncodingPipeline(object):
 
     def process_item(self, item, spider):
         line = json.dumps(dict(item)) + "\n"  # 转为json的
-        self.file.write(line)  # 写入文件中
+        # self.file.write(line)  # 写入文件中
         return item
 
     def spider_closed(self, spider):  # 爬虫结束时关闭文件
@@ -51,7 +51,7 @@ class WebcrawlerScrapyPipeline(object):
             passwd=settings['MYSQL_PASSWD'],
             charset='utf8',  # 编码要加上，否则可能出现中文乱码问题
             cursorclass=MySQLdb.cursors.DictCursor,
-            use_unicode=False,
+            use_unicode=True,
         )
         dbpool = adbapi.ConnectionPool('MySQLdb', **dbparams)  # **表示将字典扩展为关键字参数,相当于host=xxx,db=yyy....
         return cls(dbpool)  # 相当于dbpool付给了这个类，self中可以得到
@@ -64,13 +64,19 @@ class WebcrawlerScrapyPipeline(object):
 
     # 写入数据库中
     def _conditional_insert(self, tx, item):
-        # print item['name']
-        sql = """insert into testtable(name,url) values(%s,%s)"""
-        params = (item["name"], item["url"])
-        log.msg('No item received for url=%s' % item["name"],
-                level=log.ERROR)
+        content = self.dealString(item['content'])
+        if len(content) > 10000:
+            content = content[0:10000]
+        title = self.dealString(item["title"])
+        domain = self.dealString(item["domain"])
+        url = self.dealString(item["url"])
+        dt = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sql = """INSERT INTO fin_tech_article(title,created,domain,url,content) VALUES(%s,%s,%s,%s,%s)"""
+        params = (title, dt, domain, url, content)
         tx.execute(sql, params)
 
-    # 错误处理方法
     def _handle_error(self, failue, item, spider):
         print failue
+
+    def dealString(self, str):
+        return str.replace('\t', '').replace('\n', '').replace(' ', '').replace('\0', '')
