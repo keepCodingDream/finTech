@@ -28,7 +28,6 @@ class Wabi(CrawlSpider):
         deeps = get_project_settings()['SPIDER_DEEP']
         # 首先判断是不是文章页面
         links = response.xpath("//li[@class='pbox clr']/div[@class='word']/a/@href").extract()
-        print "links", links
         if len(links) > 0:
             for link in links:
                 yield Request(DOMAIN + link, callback=self.parse_content)
@@ -38,7 +37,6 @@ class Wabi(CrawlSpider):
         if len(page_size) == 2:
             page_index = page_url.split("page_")[1].replace('.html', '')
             if 1 < int(page_index) < deeps:
-                print page_url
                 yield Request(page_url, callback=self.link_parse)
 
     # 具体的文章抽取逻辑
