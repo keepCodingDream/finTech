@@ -5,25 +5,28 @@ from scrapy.spiders import Rule
 
 from webCrawler_scrapy.commonUtil import CommonUtil
 from webCrawler_scrapy.items import Article
+from scrapy.utils.project import get_project_settings
 
 
 class CoinDesk(CrawlSpider):
     name = 'coindesk'
     allowed_domains = ["coindesk.com"]
-    deeps = 10
-    start_list = ['http://www.coindesk.com/category/news/']
-    i = 2
-    while i < deeps:
-        start_list.append('http://www.coindesk.com/category/news/page/' + bytes(i) + "/")
-        i += 1
-
-    start_urls = tuple(start_list)
-    print start_urls
     rules = (
-        Rule(LinkExtractor(allow='/', restrict_xpaths="//div[contains(@class,'article')]/div[@class='picture']/a"),
+        Rule(LinkExtractor(restrict_xpaths="//div[contains(@class,'article')]/div[@class='picture']/a"),
              callback='parse_content'),
 
     )
+
+    def __new__(cls, *args, **kwargs):
+        start_list = ['http://www.coindesk.com/category/news/']
+        i = 2
+        deeps = get_project_settings()['SPIDER_DEEP']
+        while i < deeps:
+            start_list.append('http://www.coindesk.com/category/news/page/' + bytes(i) + "/")
+            i += 1
+        CoinDesk.start_urls = start_list
+        print CoinDesk.start_urls
+        return super(CoinDesk, cls).__new__(cls, *args, **kwargs)
 
     def parse_content(self, response):
         item = Article()

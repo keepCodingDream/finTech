@@ -9,79 +9,78 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'webCrawler_scrapy'  #与自己实现的爬虫类中的name属性一致
+BOT_NAME = 'webCrawler_scrapy'  # 与自己实现的爬虫类中的name属性一致
 
 SPIDER_MODULES = ['webCrawler_scrapy.spiders']
 NEWSPIDER_MODULE = 'webCrawler_scrapy.spiders'
-
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
-  # 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q = 0.8',
-  'Accept-Language': 'zh-CN,zh;q=0.8',
+    # 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q = 0.8',
+    'Accept-Language': 'zh-CN,zh;q=0.8',
 }
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'webCrawler_scrapy (+http://www.yourdomain.com)'
+# USER_AGENT = 'webCrawler_scrapy (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-DOWNLOAD_DELAY=2
+DOWNLOAD_DELAY = 2
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+# CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+# DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
-#CONCURRENT_REQUESTS_PER_IP = 16
+# CONCURRENT_REQUESTS_PER_DOMAIN = 16
+# CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+# COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
-#TELNETCONSOLE_ENABLED = False
+# TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
+# DEFAULT_REQUEST_HEADERS = {
 #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 #   'Accept-Language': 'en',
-#}
+# }
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
+# SPIDER_MIDDLEWARES = {
 #    'webCrawler_scrapy.middlewares.MyCustomSpiderMiddleware': 543,
-#}
+# }
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'webCrawler_scrapy.middlewares.RandomUserAgent':420,
+    'webCrawler_scrapy.middlewares.RandomUserAgent': 420,
 }
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
+# EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+# }
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
+# ITEM_PIPELINES = {
 #    'webCrawler_scrapy.pipelines.SomePipeline': 300,
-#}
+# }
 ITEM_PIPELINES = {
-    'webCrawler_scrapy.pipelines.JsonWithEncodingPipeline': 1000,#保存到文件中
-    'webCrawler_scrapy.pipelines.WebcrawlerScrapyPipeline': 1000,#保存到mysql数据库
+    'webCrawler_scrapy.pipelines.JsonWithEncodingPipeline': 1000,  # 保存到文件中
+    'webCrawler_scrapy.pipelines.WebcrawlerScrapyPipeline': 1000,  # 保存到mysql数据库
 }
 
 USER_AGENTS = [
@@ -125,44 +124,48 @@ USER_AGENTS = [
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
+# AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
+# AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
+# AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+# AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
-#AUTOTHROTTLE_DEBUG = False
+# AUTOTHROTTLE_DEBUG = False
 
 # Enable and configure HTTP caching (disabled by default)
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-#HTTPCACHE_ENABLED = True
-#HTTPCACHE_EXPIRATION_SECS = 0
-#HTTPCACHE_DIR = 'httpcache'
-#HTTPCACHE_IGNORE_HTTP_CODES = []
-#HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# HTTPCACHE_ENABLED = True
+# HTTPCACHE_EXPIRATION_SECS = 0
+# HTTPCACHE_DIR = 'httpcache'
+# HTTPCACHE_IGNORE_HTTP_CODES = []
+# HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-#一些通用配置
-#关闭重定向
+# 一些通用配置
+# 关闭重定向
 REDIRECT_ENABLED = False
-#减小下载超时
+# 减小下载超时
 DOWNLOAD_TIMEOUT = 15
-#禁止重试
+# 禁止重试
 RETRY_ENABLED = False
-#禁用cokies
+# 禁用cokies
 COOKIES_ENABLED = True
 
 LOG_LEVEL = 'INFO'
-#全局并发
-CONCURRENT_REQUESTS = 500
+# 全局并发
+CONCURRENT_REQUESTS = 2000
 
-#Mysql数据库的配置信息
+# Mysql数据库的配置信息
 MYSQL_HOST = '127.0.0.1'
-MYSQL_DBNAME = 'testdb'         #数据库名字，请修改
-MYSQL_USER = 'root'             #数据库账号，请修改 
-MYSQL_PASSWD = 'root'         #数据库密码，请修改
+MYSQL_DBNAME = 'testdb'  # 数据库名字，请修改
+MYSQL_USER = 'root'  # 数据库账号，请修改
+MYSQL_PASSWD = 'root'  # 数据库密码，请修改
 
-MYSQL_PORT = 3306               #数据库端口，在dbhelper中使用
+MYSQL_PORT = 3306  # 数据库端口，在dbhelper中使用
 
+# 业务深度
+SPIDER_DEEP = 10
+# 爬虫深度
+DEPTH_LIMIT = 10
