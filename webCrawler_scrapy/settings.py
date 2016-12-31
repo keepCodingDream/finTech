@@ -71,7 +71,7 @@ USER_AGENTS = [
 
 # 一些通用配置
 # 关闭重定向
-REDIRECT_ENABLED = False
+REDIRECT_ENABLED = True
 # 减小下载超时
 DOWNLOAD_TIMEOUT = 15
 # 禁止重试
