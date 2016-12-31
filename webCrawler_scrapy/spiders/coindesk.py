@@ -2,10 +2,10 @@
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider
 from scrapy.spiders import Rule
+from scrapy.utils.project import get_project_settings
 
 from webCrawler_scrapy.commonUtil import CommonUtil
 from webCrawler_scrapy.items import Article
-from scrapy.utils.project import get_project_settings
 
 
 class CoinDesk(CrawlSpider):

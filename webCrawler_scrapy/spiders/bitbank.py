@@ -20,6 +20,7 @@ class CoinDesk(CrawlSpider):
     def __new__(cls, *args, **kwargs):
         deeps = get_project_settings()['SPIDER_DEEP']
         start_list = ['https://www.bitbank.com/news']
+        # 此处是抽取所有分页列表的请求地址数组
         i = 2
         while i < deeps:
             start_list.append('https://www.bitbank.com/news?page=' + bytes(i) + "/")
