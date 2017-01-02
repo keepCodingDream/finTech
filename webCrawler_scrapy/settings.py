@@ -73,7 +73,7 @@ USER_AGENTS = [
 # 关闭重定向
 REDIRECT_ENABLED = True
 # 减小下载超时
-DOWNLOAD_TIMEOUT = 15
+DOWNLOAD_TIMEOUT = 30
 # 禁止重试
 RETRY_ENABLED = False
 # 禁用cokies
