@@ -49,3 +49,5 @@ class Wabi(CrawlSpider):
         item['url'] = response.url
         item['domain'] = DOMAIN
         return item
+
+
