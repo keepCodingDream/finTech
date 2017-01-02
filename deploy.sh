@@ -1,10 +1,16 @@
 #!/bin/bash
 export PATH=$PATH:/usr/local/bin
 cd /home/core_staff/spider/finTech
-echo "hello world-tracy" >> /home/core_staff/file.txt
 git pull
-scrapy crawl bitbank
-scrapy crawl bitcoin86
+wait
+scrapy crawl bitbank &
+scrapy crawl bitcoin86 &
+scrapy crawl bitecoin scrapy crawl btc123 &
+scrapy crawl coindesk &
+scrapy crawl wabi &
+scrapy crawl yuanbao &
+scrapy crawl 8btc &
+
 
 
 
