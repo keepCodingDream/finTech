@@ -50,4 +50,3 @@ class Wabi(CrawlSpider):
         item['domain'] = DOMAIN
         return item
 
-
