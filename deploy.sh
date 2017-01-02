@@ -1,4 +1,4 @@
 #!/bin/bash
-echo "hello world" > file.txt
+echo "hello world" > /home/core_staff/file.txt
 git pull
 
