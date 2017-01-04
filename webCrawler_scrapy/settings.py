@@ -92,6 +92,6 @@ MYSQL_PASSWD = 'root'  # 数据库密码，请修改
 MYSQL_PORT = 3306  # 数据库端口，在dbhelper中使用
 
 # 业务深度
-SPIDER_DEEP = 400
+SPIDER_DEEP = 1
 # 爬虫深度
 DEPTH_LIMIT = 10
